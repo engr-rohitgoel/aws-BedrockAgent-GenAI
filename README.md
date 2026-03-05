@@ -68,7 +68,7 @@ Once your Knowledge Base is created successfully. you can that listed in Konwled
 ### Step 3: Lambda Function Configuration
 - Create a Lambda function (Python 3.14) for the Bedrock agent's action group. We will call this Lambda function `PortfolioCreator-actions`.
 
-![Lambda](images/Lambda-Create.png)-  
+![Lambda](images/Lambda-Create.png)
 
 - Copy the python code from the file **ActionLambda.py** into your Lambda function.
 
@@ -93,3 +93,30 @@ Once your Knowledge Base is created successfully. you can that listed in Konwled
 - Once your configurations look similar to the above screenshot, select ***Save*** at the bottom.
 
 
+### Step 4: Setup Bedrock Agent and Action Group 
+
+- Navigate to the Bedrock console. Go to the toggle on the left, and under ***Builds*** select ***Agents***. Provide an agent name, like ***PortfolioCreator*** then create the agent.
+
+- The agent description is optional, and we will use the default new service role. For the model, select **Anthropic: Claude 3 Haiku**. Next, provide the following instruction for the agent
+
+```instruction
+You are an investment analyst. Your job is to assist in investment analysis, create research summaries, generate profitable company portfolios, and facilitate communication through emails. Here is how I want you to think step by step:
+
+1. Portfolio Creation:
+    Analyze the user's request to extract key information such as the desired number of companies and industry. 
+    Based on the criteria from the request, create a portfolio of companies. Use the template provided to format the portfolio.
+
+2. Company Research and Document Summarization:
+    For each company in the portfolio, conduct detailed research to gather relevant financial and operational data.
+    When a document, like the FOMC report, is mentioned, retrieve the document and provide a concise summary.
+
+3. Email Communication:
+    Using the email template provided, format an email that includes the newly created company portfolio and any summaries of important documents.
+    Utilize the provided tools to send an email upon request, That includes a summary of provided responses and portfolios created.
+```
+
+![Agent](images/Agent.png)
+
+- After, scroll to the top and **Save**
+
+- The instructions for the Generative AI Investment Analyst Tool outlines a comprehensive framework designed to assist in investment analysis. This tool is tasked with creating tailored portfolios of companies based on specific industry criteria, conducting thorough research on these companies, and summarizing relevant financial documents. Additionally, the tool formats and sends professional emails containing the portfolios and document summaries. The process involves continuous adaptation to user feedback and maintaining a contextual understanding of ongoing requests to ensure accurate and efficient responses.
